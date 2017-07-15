@@ -1,0 +1,90 @@
+<?php
+
+$host="127.0.0.1";
+$user="root";
+$password="12345";
+$database="sign_up";
+
+$connect= mysqli_connect($host, $user, $password, $database);
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	
+     <meta charset="UTF-8">
+     
+</head>
+<body>
+    
+    <?php
+        
+        // (2) read from database //
+        if (isset($_POST['submit'])){
+            
+            $first_name=$_POST['FirstName'];
+            $last_name=$_POST['Last_Name'];
+            $email=$_POST['Email'];
+            $password=$_POST['Password'];
+        
+        $view="insert into register(first_name,last_name,email,password) values('". $first_name ."','". $last_name ."','". $email ."','". $password ."')";
+              
+        
+        $result= mysqli_query($connect, $view);
+        if ( $result){
+            die("inserted");
+        }
+ else {
+            echo 'error';
+ }
+        }
+        ?>
+<img src="bmk.jpg" style="width: 100%;height: 80% " >
+
+<center>
+<style type="text/css">
+	span
+	{
+display: inline;
+		position: absolute;
+		top: 25%;
+		left:15%;
+	}
+</style>
+
+<form action='' method="POST">
+<br/>
+<span >
+ <label style="color:#00ffff;font-size: 25px "> First Name </label>  <input type="text" name="FirstName" style="background-color: #00ffc0">
+
+<br/>
+<br/>
+ <label style="color:#00ffff;font-size: 25px ">Last Name  <input type="text" name="Last Name" style="background-color: #00ffc0">
+<br/>
+<br/>
+ 
+ <label style="color:#00ffff;font-size: 25px ">  Email      <input type="text" name="Email" style="margin-left: 50px ;background-color: #00ffc0 ">
+<br/>
+<br/>
+<label style="color:#00ffff;font-size: 25px "> Password  <input type="Password" name="Password" style="margin-left: 5px ; background-color: #00ffc0 ;margin-left: 12px">
+<br/>
+<br/>
+<br/>
+<br/>
+
+<input type="submit" name="submit" value="Register" style="background-color: silver ;padding: 10px;margin-left: 40%"> </br>
+</br>
+
+
+</form>
+</span>
+
+</center>
+
+</body>
+</html>
+<?php
+
+mysqli_close($connect);
+?>
